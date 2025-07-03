@@ -7,4 +7,4 @@
 
 import Foundation
 
-enum DBModel {}
+public enum DBModel {}

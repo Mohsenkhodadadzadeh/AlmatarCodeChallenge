@@ -10,12 +10,14 @@ import Foundation
 
 extension ApiModel {
    
-    struct ShoppingListItemRemote: Codable {
+    public struct ShoppingListItemRemote: Codable {
         let id: String
         var name: String
         var quantity: Int
         var note: String?
         var didPurchase: Bool
+        var createdAt: Date
+        var updatedAt: Date?
     }
     
 }

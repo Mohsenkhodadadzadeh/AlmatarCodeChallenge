@@ -7,4 +7,4 @@
 
 import Foundation
 
-enum ApiModel { }
+public enum ApiModel { }

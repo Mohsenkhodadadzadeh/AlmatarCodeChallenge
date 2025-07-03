@@ -7,10 +7,12 @@
 
 import Foundation
 
-struct ShoppingListItemEntity: Codable {
+public struct ShoppingListItemEntity: Codable {
     let id: UUID
     var name: String
     var quantity: Int
     var note: String?
     var didPurchase: Bool
+    var createdAt: Date
+    var updatedAt: Date?
 }
