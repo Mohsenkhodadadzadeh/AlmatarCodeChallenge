@@ -14,7 +14,7 @@ public protocol RemoteShoppingListDataStorageProtocol: AnyObject {
     
     func updateRemote(_ item: ApiModel.ShoppingListItemRemote) async throws
     
-    func deleteRemote(_ item: ApiModel.ShoppingListItemRemote) async throws
+    func deleteRemote(_ id: String) async throws
     
     func downloadAll() async throws -> [ApiModel.ShoppingListItemRemote]
 }

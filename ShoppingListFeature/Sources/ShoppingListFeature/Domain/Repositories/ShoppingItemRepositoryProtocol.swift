@@ -12,7 +12,7 @@ protocol ShoppingItemRepositoryProtocol {
     func addShoppingItem(shopItem: ShoppingListItemEntity) async throws
     func getShoppingListItems(_ filter: ShoppingListFilter) async throws -> [ShoppingListItemEntity]
     func updateShoppingItem(item: ShoppingListItemEntity) async throws
-    func deleteShoppingItem(id: String) async throws
+    func deleteShoppingItem(id: UUID) async throws
     func observeShoppingListItems(_ filter: ShoppingListFilter) -> AnyPublisher<[ShoppingListItemEntity], Error>
 }
 

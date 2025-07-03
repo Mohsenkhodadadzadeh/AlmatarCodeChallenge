@@ -13,26 +13,25 @@ import SwiftUICore
 public final class InMemoryShoppingListItemDataStorage: LocalShoppingDataStorageProtocol {
     
     private let modelContainer: ModelContainer
-    private let shoppingListItemMapper: ShoppingListItemMapper
+   
     private var modelContext: ModelContext {
         ModelContext(modelContainer)
     }
     
-    private var itemsSubject: CurrentValueSubject<[ShoppingListItemEntity], Error> = .init([])
-    private var items: [ShoppingListItemEntity] = [] {
+    private var itemsSubject: CurrentValueSubject<[DBModel.ShoppingListItem], Error> = .init([])
+    private var items: [DBModel.ShoppingListItem] = [] {
         didSet {
             itemsSubject.send(items)
         }
     }
-    init (modelContainer: ModelContainer, shoppingListItemMapper: ShoppingListItemMapper = ShoppingListItemMapper()) {
+    init (modelContainer: ModelContainer) {
         self.modelContainer = modelContainer
-        self.shoppingListItemMapper = shoppingListItemMapper
         
     }
     
-    public func createOrUpdate(_ item: ShoppingListItemEntity) async throws {
+    public func createOrUpdate(_ item: DBModel.ShoppingListItem) async throws {
         let context = modelContext
-        
+      
         do {
             let descriptor = FetchDescriptor<DBModel.ShoppingListItem>(predicate: #Predicate { $0.id == item.id})
             if let existingItem = try context.fetch(descriptor).first {
@@ -58,28 +57,24 @@ public final class InMemoryShoppingListItemDataStorage: LocalShoppingDataStorage
         }
     }
     
-    public func fetchAll() async throws -> [ShoppingListItemEntity] {
+    public func fetchAll() async throws -> [DBModel.ShoppingListItem] {
         let context = modelContext
         
         do {
             let descriptor = FetchDescriptor<DBModel.ShoppingListItem>()
             let items = try context.fetch(descriptor)
-            let returnObject = items.compactMap({ item in
-                let entity = shoppingListItemMapper.toLocalDomain(from: item)
-                return entity
-            })
-            return returnObject
+            return items
         } catch {
             print("SwiftData Local Scorage Error: \(error)")
             throw error
         }
     }
     
-    public func delete(_ item: ShoppingListItemEntity) async throws {
+    public func delete(_ id: UUID) async throws {
         let context = modelContext
         
         do {
-            let descriptor = FetchDescriptor<DBModel.ShoppingListItem>(predicate: #Predicate { $0.id == item.id})
+            let descriptor = FetchDescriptor<DBModel.ShoppingListItem>(predicate: #Predicate { $0.id == id})
             if let itemToDelete = try context.fetch(descriptor).first {
                 context.delete(itemToDelete)
                 try context.save()
@@ -92,7 +87,7 @@ public final class InMemoryShoppingListItemDataStorage: LocalShoppingDataStorage
         }
     }
     
-    public func observeChanges() -> AnyPublisher<[ShoppingListItemEntity], any Error> {
+    public func observeChanges() -> AnyPublisher<[DBModel.ShoppingListItem], any Error> {
         
         return itemsSubject.eraseToAnyPublisher()
     }
