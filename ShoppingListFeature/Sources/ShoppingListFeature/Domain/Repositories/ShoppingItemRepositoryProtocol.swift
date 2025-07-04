@@ -17,8 +17,8 @@ protocol ShoppingItemRepositoryProtocol {
 }
 
 
-enum ShoppingListFilter {
-    enum ShoppingListPurchaseStatusFilter {
+public enum ShoppingListFilter {
+    public enum ShoppingListPurchaseStatusFilter {
         case all
         case purchased
         case notPurchased

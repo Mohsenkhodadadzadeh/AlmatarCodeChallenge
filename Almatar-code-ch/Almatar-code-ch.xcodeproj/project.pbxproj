@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8215D2342E184A9F00572AC0 /* ShoppingListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = 8215D2332E184A9F00572AC0 /* ShoppingListFeature */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		82D95D7C2E158DBA00BA9BAA /* Almatar-code-ch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Almatar-code-ch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82D95D8F2E158F0E00BA9BAA /* ShoppingListFeature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ShoppingListFeature; path = ../ShoppingListFeature; sourceTree = SOURCE_ROOT; };
@@ -24,17 +28,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8215D2342E184A9F00572AC0 /* ShoppingListFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8215D2322E184A9F00572AC0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		82D95D732E158DBA00BA9BAA = {
 			isa = PBXGroup;
 			children = (
 				82D95D8F2E158F0E00BA9BAA /* ShoppingListFeature */,
 				82D95D7E2E158DBA00BA9BAA /* Almatar-code-ch */,
+				8215D2322E184A9F00572AC0 /* Frameworks */,
 				82D95D7D2E158DBA00BA9BAA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,6 +80,7 @@
 			);
 			name = "Almatar-code-ch";
 			packageProductDependencies = (
+				8215D2332E184A9F00572AC0 /* ShoppingListFeature */,
 			);
 			productName = "Almatar-code-ch";
 			productReference = 82D95D7C2E158DBA00BA9BAA /* Almatar-code-ch.app */;
@@ -328,6 +342,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8215D2332E184A9F00572AC0 /* ShoppingListFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ShoppingListFeature;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 82D95D742E158DBA00BA9BAA /* Project object */;
 }

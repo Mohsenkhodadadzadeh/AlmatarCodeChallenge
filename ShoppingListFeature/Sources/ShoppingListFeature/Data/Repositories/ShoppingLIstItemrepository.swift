@@ -78,6 +78,7 @@ public class ShoppingListItemRepository: ShoppingItemRepositoryProtocol {
         
         return localDataSource.observeChanges()
             .tryMap({[weak self] items in
+                print("Received in Repo")
                 var mappedItems: [ShoppingListItemEntity] = []
                 
                 for item in items {

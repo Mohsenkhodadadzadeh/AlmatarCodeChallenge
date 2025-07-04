@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ShoppingListItemEntity: Codable {
+public struct ShoppingListItemEntity: Codable, Sendable, Equatable {
     let id: UUID
     var name: String
     var quantity: Int
@@ -15,4 +15,13 @@ public struct ShoppingListItemEntity: Codable {
     var didPurchase: Bool
     var createdAt: Date
     var updatedAt: Date?
+    
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.id == rhs.id &&
+        lhs.name == rhs.name &&
+        lhs.quantity == rhs.quantity &&
+        lhs.note == rhs.note &&
+        lhs.didPurchase == rhs.didPurchase &&
+        lhs.createdAt == rhs.createdAt
+    }
 }

@@ -10,7 +10,7 @@ import SwiftData
 
 extension DBModel {
     
-    @Model public final class ShoppingListItem: Codable, Identifiable {
+    @Model public final class ShoppingListItem: Codable, Identifiable, Equatable {
         
         @Attribute(.unique) public var id: UUID
         public var name: String
@@ -50,6 +50,15 @@ extension DBModel {
             try container.encode(didPurchase, forKey: .didPurchase)
             try container.encode(createdAt, forKey: .createdAt)
             try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+        }
+        
+        public static func == (lhs: ShoppingListItem, rhs: ShoppingListItem) -> Bool {
+            return lhs.id == rhs.id &&
+            lhs.name == rhs.name &&
+            lhs.quantity == rhs.quantity &&
+            lhs.note == rhs.note &&
+            lhs.didPurchase == rhs.didPurchase &&
+            lhs.createdAt == rhs.createdAt
         }
         
         enum CodingKeys: String, CodingKey {
